@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 
+
 const EditItem = ({ item, updateItem, closeModal }) => {
   const [editedItem, setEditedItem] = useState({ ...item });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateItem(item.id, editedItem); // Update the item
-    closeModal(); // Close the modal
+    updateItem(item.id, editedItem);
+    closeModal(); 
   };
 
   return (
-    <div className="modal">
+    <div className="modal-overlay">
       <div className="modal-content">
         <h2>Edit Item</h2>
         <form onSubmit={handleSubmit}>

@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import InventoryTable from './components/InventoryTable';
 import AddItemForm from './components/AddItem';
 import FilterSort from './components/FilterSort';
+import EditItem from './components/EditItem'; // Import EditItem component
 import './App.css';
 
 const App = () => {
@@ -16,7 +17,9 @@ const App = () => {
   ]); // <-- Default items
 
   const [filter, setFilter] = useState('');
-  const [sortOrder, setSortOrder] = useState('asc'); // Track sort order
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [editingItem, setEditingItem] = useState(null); // State to store the item being edited
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   const addItem = (newItem) => {
     setInventory([...inventory, newItem]);
@@ -34,17 +37,28 @@ const App = () => {
     ? inventory.filter((item) => item.category.toLowerCase().includes(filter.toLowerCase()))
     : inventory;
 
-  // Sort filtered inventory based on quantity and sortOrder
   const sortedInventory = filteredInventory.sort((a, b) => {
     if (sortOrder === 'asc') {
-      return a.quantity - b.quantity; // Ascending order
+      return a.quantity - b.quantity;
     } else {
-      return b.quantity - a.quantity; // Descending order
+      return b.quantity - a.quantity;
     }
   });
 
   const handleSort = () => {
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
+  };
+
+  // Open the modal for editing an item
+  const openEditModal = (item) => {
+    setEditingItem(item);
+    setIsModalOpen(true);
+  };
+
+  // Close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEditingItem(null);
   };
 
   return (
@@ -56,11 +70,23 @@ const App = () => {
       <main>
         <FilterSort filter={filter} setFilter={setFilter} sortOrder={sortOrder} handleSort={handleSort} />
         <AddItemForm addItem={addItem} />
+        
+        {/* Pass props for handling editing */}
         <InventoryTable
-          inventory={sortedInventory} // Pass sorted inventory to InventoryTable
+          inventory={sortedInventory}
           updateItem={updateItem}
           deleteItem={deleteItem}
+          openEditModal={openEditModal} // Pass the function to open the modal
         />
+        
+        {/* Show the EditItem modal if an item is being edited */}
+        {isModalOpen && (
+          <EditItem
+            item={editingItem} // Pass the selected item to the EditItem component
+            updateItem={updateItem}
+            closeModal={closeModal}
+          />
+        )}
       </main>
       <Footer />
     </div>
