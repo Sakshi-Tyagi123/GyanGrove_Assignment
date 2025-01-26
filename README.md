@@ -1,6 +1,6 @@
 # Inventory Management System
 
-This is a simple Inventory Management System built using React.js with Vite. The app allows users to manage their inventory effectively by adding, editing, and deleting items. It also includes features like filtering by category, sorting by quantity, and highlighting low-stock items. A chatbot assistant suggests buying low-stock items after a delay of 3 seconds.
+This is a simple Inventory Management System built using React.js with Vite. The app allows users to manage their inventory effectively by adding, editing, and deleting items. It also includes features like filtering by category, sorting by quantity, and highlighting low-stock items.
 
 ---
 
