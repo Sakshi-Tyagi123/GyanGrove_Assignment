@@ -22,6 +22,22 @@ This is a simple Inventory Management System built using React.js with Vite. The
 - **Styling**: CSS (basic styling for components)
 - **State Management**: React's `useState` hook
 
+---
+
+##Screenshots
+
+![application page](https://github.com/user-attachments/assets/eedbd834-f97f-473a-9cbf-f70e357a43ea)
+![For editing](https://github.com/user-attachments/assets/1c421a06-4546-4c87-a9f8-d2857a49e1f2)
+
+---
+
+##demo-video
+
+[Watch the video](https://drive.google.com/file/d/1nDSbNRa2Ov1G2IrIhDeMt4AlXcV1aAPU/view?usp=drivesdk)
+Click on the link above to see the demo
+
+
+
 
 
 
